@@ -10,13 +10,13 @@
 <meta property="og:image" content="assets/logo.webp">
 <meta name="theme-color" content="#04060c">
 <link rel="icon" href="assets/logo.webp">
-<meta name="description" content="Hand-made custom spinners and spoons for salmon, steelhead and trout. Made in Kalama, Washington by Joey Peonio. Find the booth at the Mountain Timber Market.">
+<meta name="description" content="Hand-made custom spinners and spoons for salmon, steelhead and trout. Made in Kalama, Washington by Joey Peonio. Find them at Etc Mercantile in downtown Kalama.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Knewave&display=swap">
 
 <style>
-/* Layout: a market-booth poster that scrolls. Brush-lettered chrome headlines on river-black,
+/* Layout: a shop poster that scrolls. Brush-lettered chrome headlines on river-black,
    royal blue used as paint (slashes, bands, one solid block), and the lures hung on a display rail. */
 :root {
   color-scheme: dark;
@@ -322,7 +322,7 @@ footer.site .wordmark { font-size: 1.2rem; }
         <p class="lede">Custom <strong>spinners and spoons</strong> for salmon, steelhead and trout. Every one is made by hand by Joey Peonio and fished on the Kalama River.</p>
         <div class="cta">
           <a class="btn" href="#lures"><span>See the lures</span></a>
-          <a class="btn ghost" href="#find"><span>Find the booth</span></a>
+          <a class="btn ghost" href="#find"><span>Where to buy</span></a>
         </div>
         <ul class="species" aria-label="Made for">
           <li>Salmon</li><li>Steelhead</li><li>Trout</li>
@@ -361,7 +361,7 @@ footer.site .wordmark { font-size: 1.2rem; }
           <h3>Spinners</h3>
           <p>A blade that spins around a wire shaft, throwing flash and a thump fish can feel. Hammered silver blade with a painted tip and body.</p>
         </div>
-        <p class="hint">Give a lure a tap to set it swinging. Looking for a certain color? Ask Joey at the booth.</p>
+        <p class="hint">Give a lure a tap to set it swinging.</p>
       </div>
 
       <div class="racks">
@@ -416,16 +416,16 @@ footer.site .wordmark { font-size: 1.2rem; }
     <div class="wrap">
       <div class="find-copy">
         <p class="eyebrow">Custom lures for sale</p>
-        <h2 class="brush">Find the booth at the Timber Market.</h2>
-        <p>Chrome Chasers sells at the Mountain Timber Market on the Kalama waterfront. Come pick out a lure, see the colors in person and talk fishing with the person who made it.</p>
+        <h2 class="brush">Find them at Etc Mercantile.</h2>
+        <p>Chrome Chasers lures are for sale at Etc Mercantile on 1st Street in downtown Kalama. Stop in, see the colors in person and pick one out.</p>
       </div>
       <div class="place">
         <address>
-          <span>Mountain Timber Market</span>
-          <span id="addr" style="font-size:inherit;letter-spacing:inherit;text-transform:none;color:inherit;margin:0">254 Hendrickson Drive<br>Kalama, Washington</span>
+          <span>Etc Mercantile · Downtown Kalama</span>
+          <span id="addr" style="font-size:inherit;letter-spacing:inherit;text-transform:none;color:inherit;margin:0">157 N 1st Street<br>Kalama, Washington</span>
         </address>
         <div class="cta">
-          <a class="btn light" href="https://www.google.com/maps/search/?api=1&query=Mountain+Timber+Market+254+Hendrickson+Drive+Kalama+WA" target="_blank" rel="noopener"><span>Open in Maps</span></a>
+          <a class="btn light" href="https://www.google.com/maps/search/?api=1&query=Etc+Mercantile+157+N+1st+St+Kalama+WA" target="_blank" rel="noopener"><span>Open in Maps</span></a>
           <button class="btn outline-light" type="button" id="copy-addr"><span>Copy address</span></button>
         </div>
       </div>
@@ -534,10 +534,10 @@ footer.site .wordmark { font-size: 1.2rem; }
     });
   });
 
-  // copy the market address
+  // copy the shop address
   var copyBtn = document.getElementById('copy-addr');
   var copyLabel = copyBtn.querySelector('span');
-  var ADDRESS = 'Mountain Timber Market, 254 Hendrickson Drive, Kalama, WA';
+  var ADDRESS = 'Etc Mercantile, 157 N 1st St, Kalama, WA 98625';
   function selectAddress() {
     var r = document.createRange();
     r.selectNodeContents(document.getElementById('addr'));
