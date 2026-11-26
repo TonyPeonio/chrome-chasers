@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chrome Chasers Fishing</title>
+<meta property="og:title" content="Chrome Chasers Fishing">
+<meta property="og:description" content="Hand-made custom spinners and spoons, made in Kalama, Washington.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo.webp">
+<meta name="theme-color" content="#04060c">
+<link rel="icon" href="assets/logo.webp">
+<meta name="description" content="Hand-made custom spinners and spoons for salmon, steelhead and trout. Made in Kalama, Washington by Joey Peonio. Find the booth at the Mountain Timber Market.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Knewave&display=swap">
+
+<style>
+/* Layout: a market-booth poster that scrolls. Brush-lettered chrome headlines on river-black,
+   royal blue used as paint (slashes, bands, one solid block), and the lures hung on a display rail. */
+:root {
+  color-scheme: dark;
+  --ink: #04060c;          /* river at night */
+  --deep: #080d1c;         /* raised ground */
+  --line: #1a2647;         /* hairlines */
+  --royal: #2350e8;        /* the paint */
+  --royal-deep: #1637b4;
+  --royal-hi: #7396ff;     /* royal for small text on black */
+  --chrome: #eef2fa;       /* bright silver */
+  --steel: #a3aec6;        /* body text */
+  --dim: #6f7b96;          /* captions */
+  --metal: #c9d2e3;        /* rings, hooks, wire */
+
+  --display: "Knewave", "Brush Script MT", "Segoe Script", cursive;
+  --label: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Barlow", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--steel);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; }
+a { color: inherit; }
+h1, h2, h3, p, figure, blockquote, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--chrome); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.band { padding-block: clamp(64px, 9vw, 116px); }
+
+/* ---------- type ---------- */
+.eyebrow {
+  font-family: var(--label);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--royal-hi);
+}
+.brush {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  color: var(--chrome);
+}
+.chrome-text {
+  background: linear-gradient(176deg, #ffffff 8%, #dce4f2 36%, #8794b1 53%, #f6f8fc 61%, #b9c4da 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--chrome);
+  padding: 0.1em 0.08em 0.14em;
+  margin-inline: -0.08em;
+}
+.blue-text { color: var(--royal-hi); }
+h2.brush { font-size: clamp(2.25rem, 5.4vw, 3.6rem); }
+.lede { font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--steel); max-width: 34em; }
+.lede strong, p strong { color: var(--chrome); font-weight: 600; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  font-family: var(--label); font-weight: 700; font-size: 1.0625rem;
+  letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+  padding: 0.85em 1.5em;
+  border: 2px solid var(--royal);
+  background: var(--royal); color: #fff;
+  transform: skewX(-8deg);
+  transition: background-color .18s, border-color .18s, color .18s, translate .18s;
+  cursor: pointer;
+}
+.btn > span { display: inline-block; transform: skewX(8deg); }
+.btn:hover { background: #2f5df5; border-color: #2f5df5; translate: 0 -2px; }
+.btn.ghost { background: transparent; border-color: #3a4a78; color: var(--chrome); }
+.btn.ghost:hover { border-color: var(--chrome); }
+.btn.light { background: #fff; border-color: #fff; color: var(--royal-deep); }
+.btn.light:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+.btn.outline-light { background: transparent; border-color: rgba(255,255,255,.6); color: #fff; }
+.btn.outline-light:hover { background: transparent; border-color: #fff; }
+
+/* ---------- nav ---------- */
+.nav { position: relative; z-index: 2; }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.wordmark { font-family: var(--display); font-size: 1.45rem; line-height: 1; color: var(--chrome); text-decoration: none; white-space: nowrap; }
+.wordmark b { font-weight: 400; color: var(--royal-hi); }
+.nav ul { display: flex; align-items: center; gap: clamp(14px, 3vw, 34px); }
+.nav li a {
+  font-family: var(--label); font-weight: 600; font-size: 1rem; letter-spacing: 0.16em;
+  text-transform: uppercase; text-decoration: none; color: var(--steel);
+  padding-block: 6px; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s;
+}
+.nav li a:hover { color: var(--chrome); border-color: var(--royal); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; isolation: isolate; }
+.hero::before { /* royal light behind the logo */
+  content: ""; position: absolute; z-index: -1; inset: -120px 0 0 0;
+  background:
+    radial-gradient(52% 58% at 76% 44%, rgba(35,80,232,.42), transparent 70%),
+    radial-gradient(40% 40% at 8% 96%, rgba(35,80,232,.16), transparent 70%);
+  pointer-events: none;
+}
+.hero .wrap {
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  align-items: center; gap: clamp(24px, 4vw, 48px);
+  padding-block: clamp(28px, 5vw, 64px) clamp(84px, 10vw, 128px);
+}
+.hero-copy { display: grid; gap: 22px; justify-items: start; min-width: 0; }
+.hero h1 { font-size: clamp(2.35rem, 5.3vw, 4.2rem); }
+.hero h1 .l1 { display: block; width: fit-content; }
+.hero h1 .l2 { display: block; position: relative; width: fit-content; color: #fff; padding: 0.02em 0.22em 0.1em; margin: 0.08em 0 0 -0.1em; }
+.hero h1 .l2::before { /* brush swipe */
+  content: ""; position: absolute; z-index: -1; inset: 6% -1% 0 -1%;
+  background: var(--royal);
+  transform: skewX(-9deg) rotate(-1.2deg);
+  clip-path: polygon(0 18%, 3% 4%, 22% 9%, 48% 0, 71% 7%, 97% 2%, 100% 30%, 98% 74%, 100% 96%, 74% 91%, 52% 100%, 24% 93%, 4% 99%, 1% 62%);
+}
+.cta { display: flex; flex-wrap: wrap; gap: 14px 18px; padding-left: 6px; margin-top: 6px; }
+.species { display: flex; flex-wrap: wrap; gap: 6px 22px; font-family: var(--label); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.9375rem; color: var(--dim); }
+.species li { display: flex; align-items: center; gap: 22px; }
+.species li + li::before { content: ""; width: 5px; height: 5px; background: var(--royal); transform: rotate(45deg); margin-left: -1px; }
+
+.hero-logo { position: relative; justify-self: center; width: min(100%, 560px); }
+.hero-logo img { width: 100%; height: auto; mix-blend-mode: screen; animation: bob 7s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+.waves { position: absolute; left: 0; right: 0; bottom: 34px; height: 44px; z-index: -1; pointer-events: none; }
+.waves i { position: absolute; inset: 0; background-repeat: repeat-x; background-size: 240px 44px; animation: drift 16s linear infinite; }
+.waves i:first-child { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='44' viewBox='0 0 240 44'%3E%3Cpath d='M0 22C30 6 50 6 80 20s50 16 80 2 50-14 80 0' fill='none' stroke='%232350e8' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E"); opacity: .8; }
+.waves i:last-child { top: 12px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='44' viewBox='0 0 240 44'%3E%3Cpath d='M0 22C30 10 50 10 80 21s50 12 80 1 50-11 80 0' fill='none' stroke='%237396ff' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E"); opacity: .45; animation-duration: 24s; animation-direction: reverse; }
+@keyframes drift { to { background-position-x: -240px; } }
+
+/* ---------- ticker ---------- */
+.ticker-clip { overflow: hidden; padding-block: 18px; margin-block: -18px; position: relative; z-index: 1; }
+.ticker { background: var(--royal); color: #fff; transform: rotate(-1.4deg) scaleX(1.04); box-shadow: 0 10px 40px rgba(35,80,232,.35); }
+.ticker-track { display: flex; width: max-content; animation: slide 36s linear infinite; }
+.ticker-track ul { display: flex; flex: none; }
+.ticker-track li { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.75rem); line-height: 1; padding: 15px 0 17px; white-space: nowrap; display: flex; align-items: center; }
+.ticker-track li::after { content: ""; width: 9px; height: 9px; background: var(--ink); transform: rotate(45deg); margin-inline: clamp(18px, 3vw, 34px); }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* ---------- lineup ---------- */
+.lineup .wrap { display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.lineup-copy { display: grid; gap: 20px; justify-items: start; min-width: 0; }
+.tabs { display: inline-flex; border: 2px solid var(--line); transform: skewX(-8deg); margin: 6px 0 0 6px; }
+.tabs button {
+  appearance: none; border: 0; background: transparent; color: var(--steel); cursor: pointer;
+  font-family: var(--label); font-weight: 700; font-size: 1.125rem; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.6em 1.5em; transition: background-color .18s, color .18s;
+}
+.tabs button > span { display: inline-block; transform: skewX(8deg); }
+.tabs button:hover { color: var(--chrome); }
+.tabs button[aria-selected="true"] { background: var(--royal); color: #fff; }
+.type-note { min-height: 5.2em; }
+.type-note h3 { font-family: var(--label); font-weight: 700; font-size: 1.375rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--chrome); margin-bottom: 4px; }
+.hint { font-size: 0.9375rem; color: var(--dim); }
+
+.rack { position: relative; padding-top: 12px; min-width: 0; }
+.rack::before { /* display rail */
+  content: ""; position: absolute; left: -2%; right: -2%; top: 0; height: 12px; border-radius: 6px;
+  background: linear-gradient(180deg, #f4f7fc, #aeb9d0 38%, #56617c 62%, #1b233b);
+  box-shadow: 0 8px 22px rgba(0,0,0,.6);
+}
+.pegs { display: flex; justify-content: space-between; gap: 6px; padding-inline: clamp(4px, 2vw, 22px); }
+.lure { --c: #fff; flex: 1 1 0; min-width: 0; max-width: 104px; display: flex; flex-direction: column; align-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.swing { display: flex; flex-direction: column; align-items: center; width: 100%; transform-origin: 50% 0; animation: sway var(--t, 5s) ease-in-out var(--d, 0s) infinite alternate; }
+.swing::before { content: ""; width: 1.5px; height: var(--drop, 30px); background: linear-gradient(180deg, rgba(201,210,227,.9), rgba(201,210,227,.45)); }
+.swing svg { width: 100%; max-width: 84px; height: auto; overflow: visible; filter: drop-shadow(0 10px 14px rgba(0,0,0,.55)); }
+.lure.kick .swing { animation: kick 1.5s ease-out; }
+@media (hover: hover) { .lure:hover .swing { animation: kick 1.5s ease-out; } }
+@keyframes sway { from { transform: rotate(-1.7deg); } to { transform: rotate(1.7deg); } }
+@keyframes kick { 0% { transform: rotate(0); } 16% { transform: rotate(10deg); } 38% { transform: rotate(-7.5deg); } 58% { transform: rotate(4.5deg); } 76% { transform: rotate(-2.2deg); } 90% { transform: rotate(.8deg); } 100% { transform: rotate(0); } }
+.lure figcaption { margin-top: auto; padding-top: 16px; font-family: var(--label); font-weight: 600; font-size: clamp(0.75rem, 1.5vw, 0.9375rem); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); text-align: center; line-height: 1.25; }
+.lure figcaption::before { content: ""; display: block; width: 18px; height: 4px; margin: 0 auto 8px; background: var(--c); transform: skewX(-20deg); }
+
+.rg { fill: none; stroke: var(--metal); stroke-width: 1.8; }
+.hk path { fill: none; stroke: var(--metal); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+.wire { fill: none; stroke: var(--metal); stroke-width: 1.7; stroke-linecap: round; }
+.paint { fill: var(--c); }
+.blade { transform-box: view-box; transform-origin: 32px 0; }
+.lure.kick .blade { animation: spin .32s linear 4; }
+@media (hover: hover) { .lure:hover .blade { animation: spin .32s linear infinite; } }
+@keyframes spin { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(-1); } }
+
+/* ---------- pillars ---------- */
+.pillars { background: var(--deep); border-block: 1px solid var(--line); }
+.pillars ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 5vw, 64px); }
+.pillars li { display: grid; gap: 12px; justify-items: start; align-content: start; }
+.pillars svg { width: 44px; height: 44px; fill: none; stroke: var(--royal-hi); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.pillars h3 { font-size: clamp(1.75rem, 3.4vw, 2.3rem); }
+.pillars p { max-width: 24em; }
+
+/* ---------- story ---------- */
+.story .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.story-photo { position: relative; margin-left: clamp(-56px, -4vw, 0px); }
+.story-photo img { width: 100%; height: auto; }
+.story-copy { display: grid; gap: 24px; min-width: 0; }
+.story blockquote p { font-family: var(--display); font-size: clamp(1.6rem, 3.3vw, 2.3rem); line-height: 1.18; color: var(--chrome); text-wrap: balance; }
+.story blockquote footer { margin-top: 14px; font-family: var(--label); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.9375rem; color: var(--royal-hi); }
+.define { border-left: 3px solid var(--royal); padding: 4px 0 4px 20px; max-width: 30em; }
+.define dt { font-family: var(--label); font-weight: 700; font-size: 1.375rem; letter-spacing: 0.04em; color: var(--chrome); }
+.define dt small { font-family: var(--body); font-weight: 400; font-size: 0.9375rem; font-style: italic; letter-spacing: 0; color: var(--dim); margin-left: 8px; }
+
+/* ---------- find ---------- */
+.find { position: relative; isolation: isolate; background: var(--royal); color: #dfe7ff; overflow: hidden; }
+.find::before { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(70% 120% at 100% 0%, rgba(4,6,12,.5), transparent 60%), linear-gradient(180deg, transparent 55%, rgba(4,6,12,.28)); }
+.find .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(28px, 5vw, 64px); align-items: end; }
+.find .eyebrow { color: #cfdbff; }
+.find h2 { font-size: clamp(2.5rem, 6.6vw, 4.6rem); color: #fff; margin-top: 12px; }
+.find-copy { display: grid; gap: 18px; min-width: 0; }
+.find-copy p { max-width: 30em; color: #e3eaff; }
+.place { display: grid; gap: 18px; justify-items: start; border-top: 2px solid rgba(255,255,255,.35); padding-top: 22px; min-width: 0; }
+.place address { font-style: normal; font-family: var(--label); font-weight: 600; font-size: 1.5rem; line-height: 1.25; letter-spacing: 0.04em; color: #fff; }
+.place address span { display: block; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: #cfdbff; margin-bottom: 6px; }
+.place .cta { padding-left: 6px; margin-top: 0; }
+
+/* ---------- footer ---------- */
+footer.site .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 30px; font-size: 0.9375rem; color: var(--dim); }
+footer.site .wordmark { font-size: 1.2rem; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 820px) {
+  .hero .wrap, .lineup .wrap, .story .wrap, .find .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero-logo { order: -1; width: min(100%, 400px); }
+  .hero .wrap { padding-top: 8px; }
+  .pillars ul { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .story-photo { margin-inline: -12px; }
+  .type-note { min-height: 0; }
+  .find .wrap { align-items: start; }
+}
+@media (max-width: 560px) {
+  .nav li:not(.keep) { display: none; }
+  .btn { font-size: 1rem; padding: 0.8em 1.25em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- shared paint for the lure drawings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="cc-chrome" x1="0" y1="0" x2="1" y2="0.25">
+      <stop offset="0" stop-color="#f8fafd"/><stop offset=".42" stop-color="#c3cde0"/>
+      <stop offset=".62" stop-color="#eff3f9"/><stop offset="1" stop-color="#8793ad"/>
+    </linearGradient>
+    <linearGradient id="cc-gloss" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".38" stop-color="#fff" stop-opacity=".42"/>
+      <stop offset=".7" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/>
+    </linearGradient>
+    <pattern id="cc-hammer" width="10" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="2.6" cy="2.4" r="2.5" fill="#39435c" fill-opacity=".34"/><circle cx="2.1" cy="1.9" r="1.7" fill="#fff" fill-opacity=".8"/>
+      <circle cx="7.6" cy="6.9" r="2.5" fill="#39435c" fill-opacity=".34"/><circle cx="7.1" cy="6.4" r="1.7" fill="#fff" fill-opacity=".8"/>
+    </pattern>
+    <clipPath id="cc-spoon"><path d="M32 22C50 30 60 80 52 112 47 132 38 146 32 148 26 146 17 132 12 112 4 80 14 30 32 22Z"/></clipPath>
+    <clipPath id="cc-blade"><path d="M32 30C46 30 58 48 57 70 56 88 48 99 42 99 34 99 30 80 30 62 30 48 31 36 32 30Z"/></clipPath>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="Chrome Chasers Fishing, back to top">Chrome <b>Chasers</b></a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#lures">Lures</a></li>
+        <li><a href="#maker">The maker</a></li>
+        <li class="keep"><a href="#find">Find us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Chrome Chasers Fishing · Kalama, Washington</p>
+        <h1 class="brush"><span class="l1 chrome-text">Hand-made lures,</span> <span class="l2">built in Kalama.</span></h1>
+        <p class="lede">Custom <strong>spinners and spoons</strong> for salmon, steelhead and trout. Every one is made by hand by Joey Peonio and fished on the Kalama River.</p>
+        <div class="cta">
+          <a class="btn" href="#lures"><span>See the lures</span></a>
+          <a class="btn ghost" href="#find"><span>Find the booth</span></a>
+        </div>
+        <ul class="species" aria-label="Made for">
+          <li>Salmon</li><li>Steelhead</li><li>Trout</li>
+        </ul>
+      </div>
+      <div class="hero-logo">
+        <img src="assets/logo.webp" width="808" height="592" alt="Chrome Chasers Fishing logo: a silver steelhead leaping in front of mountains and pines">
+      </div>
+    </div>
+    <div class="waves" aria-hidden="true"><i></i><i></i></div>
+  </section>
+
+  <div class="ticker-clip" aria-hidden="true">
+    <div class="ticker">
+      <div class="ticker-track">
+        <ul><li>Salmon</li><li>Steelhead</li><li>Trout</li><li>Spinners</li><li>Spoons</li><li>Hand made in Kalama</li><li>Salmon</li><li>Steelhead</li><li>Trout</li><li>Spinners</li><li>Spoons</li><li>Hand made in Kalama</li></ul>
+        <ul><li>Salmon</li><li>Steelhead</li><li>Trout</li><li>Spinners</li><li>Spoons</li><li>Hand made in Kalama</li><li>Salmon</li><li>Steelhead</li><li>Trout</li><li>Spinners</li><li>Spoons</li><li>Hand made in Kalama</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="lineup band" id="lures">
+    <div class="wrap">
+      <div class="lineup-copy">
+        <p class="eyebrow">The lineup</p>
+        <h2 class="brush"><span class="chrome-text">Two kinds of flash.</span> <span class="blue-text">Both hand made.</span></h2>
+        <div class="tabs" role="tablist" aria-label="Lure type">
+          <button type="button" role="tab" id="tab-spoons" aria-controls="panel-spoons" aria-selected="true"><span>Spoons</span></button>
+          <button type="button" role="tab" id="tab-spinners" aria-controls="panel-spinners" aria-selected="false" tabindex="-1"><span>Spinners</span></button>
+        </div>
+        <div class="type-note" id="note-spoons">
+          <h3>Spoons</h3>
+          <p>A curved metal blade that wobbles and flashes like a wounded baitfish. Bright paint on one side, hammered silver on the other.</p>
+        </div>
+        <div class="type-note" id="note-spinners" hidden>
+          <h3>Spinners</h3>
+          <p>A blade that spins around a wire shaft, throwing flash and a thump fish can feel. Hammered silver blade with a painted tip and body.</p>
+        </div>
+        <p class="hint">Give a lure a tap to set it swinging. Looking for a certain color? Ask Joey at the booth.</p>
+      </div>
+
+      <div class="racks">
+        <div class="rack" id="panel-spoons" role="tabpanel" aria-labelledby="tab-spoons"><div class="pegs" data-type="spoon"></div></div>
+        <div class="rack" id="panel-spinners" role="tabpanel" aria-labelledby="tab-spinners" hidden><div class="pegs" data-type="spinner"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars band" aria-label="What you get">
+    <div class="wrap">
+      <ul>
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 24c6-9 16-12 25-8 4 2 7 5 9 8-2 3-5 6-9 8-9 4-19 1-25-8Z"/><path d="M39 24l6-7v14l-6-7Z"/><circle cx="14" cy="22" r="1.4"/><path d="M22 18c2 4 2 8 0 12"/></svg>
+          <h3 class="brush chrome-text">Quality</h3>
+          <p>Built by hand, one lure at a time. Nothing goes on the table until it looks right and runs right.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l16 6v12c0 11-7 18-16 22-9-4-16-11-16-22V10l16-6Z"/><path d="M16 24l6 6 11-12"/></svg>
+          <h3 class="brush chrome-text">Durability</h3>
+          <p>Put together to handle hard casts, river rock and fish that fight back.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="27" cy="7" r="3"/><path d="M27 10v21a9 9 0 0 1-18 0v-5"/><path d="M9 26l-4 6M9 26l5 5"/></svg>
+          <h3 class="brush chrome-text">Results</h3>
+          <p>These are the same lures Joey ties on when he fishes the Kalama River.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="story band" id="maker">
+    <div class="wrap">
+      <figure class="story-photo">
+        <img src="assets/lures.webp" width="772" height="470" loading="lazy" alt="Five Chrome Chasers spoons in pink, chartreuse, orange, blue and purple over hammered silver, laid out on a wet river rock">
+      </figure>
+      <div class="story-copy">
+        <p class="eyebrow">Made here in Kalama</p>
+        <blockquote>
+          <p>“I make spinners and spoons by hand in Kalama, and I use them on the Kalama River.”</p>
+          <footer>Joey Peonio, maker and local high school student</footer>
+        </blockquote>
+        <dl class="define">
+          <dt>chrome <small>noun, angler slang</small></dt>
+          <dd>A salmon or steelhead fresh in from the ocean, still bright silver. The fish Chrome Chasers is named for.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="find band" id="find">
+    <div class="wrap">
+      <div class="find-copy">
+        <p class="eyebrow">Custom lures for sale</p>
+        <h2 class="brush">Find the booth at the Timber Market.</h2>
+        <p>Chrome Chasers sells at the Mountain Timber Market on the Kalama waterfront. Come pick out a lure, see the colors in person and talk fishing with the person who made it.</p>
+      </div>
+      <div class="place">
+        <address>
+          <span>Mountain Timber Market</span>
+          <span id="addr" style="font-size:inherit;letter-spacing:inherit;text-transform:none;color:inherit;margin:0">254 Hendrickson Drive<br>Kalama, Washington</span>
+        </address>
+        <div class="cta">
+          <a class="btn light" href="https://www.google.com/maps/search/?api=1&query=Mountain+Timber+Market+254+Hendrickson+Drive+Kalama+WA" target="_blank" rel="noopener"><span>Open in Maps</span></a>
+          <button class="btn outline-light" type="button" id="copy-addr"><span>Copy address</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span class="wordmark">Chrome <b>Chasers</b></span>
+    <span>Hand made in Kalama, Washington · © 2026 Chrome Chasers Fishing</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var COLORS = [
+    { name: 'Hot Pink',   c: '#ff2d8f' },
+    { name: 'Chartreuse', c: '#c6f02c' },
+    { name: 'Orange',     c: '#ff7a1c' },
+    { name: 'Royal Blue', c: '#2a5cff' },
+    { name: 'Purple',     c: '#8d3fe0' }
+  ];
+  var DROPS = [22, 52, 30, 60, 26];
+
+  function hook(dy) {
+    return '<g class="hk" transform="translate(0 ' + dy + ')">' +
+      '<circle class="rg" cx="32" cy="157" r="3.2"/>' +
+      '<path d="M32 160.5V178"/>' +
+      '<path d="M32 174C32 199 11 199 11 176l5 5"/>' +
+      '<path d="M32 174C32 199 53 199 53 176l-5 5"/>' +
+      '<path d="M32 177v12c0 7-7 7-7 0l-.4-4"/></g>';
+  }
+  var SPOON =
+    '<svg viewBox="0 0 64 210" aria-hidden="true" focusable="false">' +
+    '<circle class="rg" cx="32" cy="7.5" r="5"/><circle class="rg" cx="32" cy="20" r="6.5"/>' +
+    '<g clip-path="url(#cc-spoon)">' +
+      '<rect x="4" y="20" width="56" height="130" fill="url(#cc-chrome)"/>' +
+      '<rect x="4" y="20" width="56" height="130" fill="url(#cc-hammer)"/>' +
+      '<path class="paint" d="M33.5 20C29.5 62 29.5 108 33.5 150H4V20Z"/>' +
+      '<path d="M33.5 20C29.5 62 29.5 108 33.5 150H4V20Z" fill="url(#cc-gloss)"/>' +
+    '</g>' +
+    '<path d="M32 22C50 30 60 80 52 112 47 132 38 146 32 148 26 146 17 132 12 112 4 80 14 30 32 22Z" fill="none" stroke="#fff" stroke-opacity=".5"/>' +
+    '<circle cx="32" cy="28.5" r="2" fill="#04060c"/><circle cx="32" cy="141.5" r="2" fill="#04060c"/>' +
+    '<circle class="rg" cx="32" cy="148" r="5.5"/>' + hook(0) + '</svg>';
+  var SPINNER =
+    '<svg viewBox="0 0 64 210" aria-hidden="true" focusable="false">' +
+    '<circle class="rg" cx="32" cy="7.5" r="5"/><path class="wire" d="M32 12.5V161"/>' +
+    '<g class="blade">' +
+      '<g clip-path="url(#cc-blade)">' +
+        '<rect x="28" y="28" width="32" height="74" fill="url(#cc-chrome)"/>' +
+        '<rect x="28" y="28" width="32" height="74" fill="url(#cc-hammer)"/>' +
+        '<path class="paint" d="M28 80L60 72V102H28Z"/>' +
+      '</g>' +
+      '<path d="M32 30C46 30 58 48 57 70 56 88 48 99 42 99 34 99 30 80 30 62 30 48 31 36 32 30Z" fill="none" stroke="#fff" stroke-opacity=".5"/>' +
+    '</g>' +
+    '<circle cx="32" cy="30" r="2.8" fill="#c9d2e3"/>' +
+    '<circle cx="32" cy="105" r="4.2" fill="url(#cc-chrome)"/>' +
+    '<path class="paint" d="M32 110C40 112 43 133 38 149H26C21 133 24 112 32 110Z"/>' +
+    '<path d="M32 110C40 112 43 133 38 149H26C21 133 24 112 32 110Z" fill="url(#cc-gloss)"/>' +
+    '<path d="M25 122h14M24.4 130h15.2" fill="none" stroke="#04060c" stroke-opacity=".55" stroke-width="1.6"/>' +
+    '<circle cx="32" cy="154" r="3.6" fill="url(#cc-chrome)"/>' + hook(6) + '</svg>';
+
+  document.querySelectorAll('.pegs').forEach(function (pegs) {
+    var spoon = pegs.dataset.type === 'spoon';
+    pegs.innerHTML = COLORS.map(function (col, i) {
+      var drop = DROPS[spoon ? i : (i + 2) % 5];
+      return '<figure class="lure" style="--c:' + col.c + ';--drop:' + drop + 'px;--t:' + (4.2 + (i * 7 % 5) * 0.45) + 's;--d:-' + (i * 1.3) + 's">' +
+        '<div class="swing">' + (spoon ? SPOON : SPINNER) + '</div>' +
+        '<figcaption>' + col.name + '</figcaption></figure>';
+    }).join('');
+  });
+
+  // tap or click sets a lure swinging
+  document.querySelectorAll('.lure').forEach(function (lure) {
+    lure.addEventListener('click', function () {
+      lure.classList.remove('kick');
+      void lure.offsetWidth;
+      lure.classList.add('kick');
+    });
+    lure.querySelector('.swing').addEventListener('animationend', function (e) {
+      if (e.animationName === 'kick') lure.classList.remove('kick');
+    });
+  });
+
+  // spoons / spinners tabs
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      var key = t.id.replace('tab-', '');
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById('panel-' + key).hidden = !on;
+      document.getElementById('note-' + key).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        select(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+      }
+    });
+  });
+
+  // copy the market address
+  var copyBtn = document.getElementById('copy-addr');
+  var copyLabel = copyBtn.querySelector('span');
+  var ADDRESS = 'Mountain Timber Market, 254 Hendrickson Drive, Kalama, WA';
+  function selectAddress() {
+    var r = document.createRange();
+    r.selectNodeContents(document.getElementById('addr'));
+    var s = window.getSelection();
+    s.removeAllRanges(); s.addRange(r);
+    copyLabel.textContent = 'Address selected';
+  }
+  copyBtn.addEventListener('click', function () {
+    var done = function () { copyLabel.textContent = 'Copied'; };
+    try {
+      navigator.clipboard.writeText(ADDRESS).then(done, selectAddress);
+    } catch (err) { selectAddress(); }
+    setTimeout(function () { copyLabel.textContent = 'Copy address'; }, 2400);
+  });
+})();
+</script>
+</body>
+</html>
